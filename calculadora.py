@@ -1,34 +1,15 @@
-# 1- parte
-num1 = float(input("Digite o primero número: "))
-operador = str(input("Digite o operador (+, -, /, *): "))
-num2 = float(input("Digite o segundo número: "))
+# -Tratamento de erro
+from utils import ler_numero, calcular, limpar_tela
 
-# operações
-
-# Adição:
-if operador == "+":
-    resultado = num1 + num2
-    print(f"{num1:.0f} {operador} {num2:.0f} = {resultado:.0f}")
+while True:
+    num1 = ler_numero("Digite o primero número: ")
+    op = str(input("Digite o operador (+, -, /, *): ")).strip()
+    num2 = ler_numero("Digite o segundo número: ")
+    resultado = calcular(num1, num2, op)
     
-# Subtração:
-elif operador == "-":
-    resultado = num1 - num2
-    print(f"{num1:.0f} {operador} {num2:.0f} = {resultado:.0f}")
+    print(f"{num1} {op} {num2} = {resultado}")
     
-# Divisão:
-elif operador == "/":
-    if num2 != 0:
-        resultado = num1 / num2
-        print(f"{num1:.0f} {operador} {num2:.0f} = {resultado:.0f}")
-    else:
-        print("\033[1;31mERRO:\033[m Não é possível dividir por zero!")
-
-# Multiplicação: 
-elif operador == "*":
-    resultado = num1 * num2
-    print(f"{num1:.0f} {operador} {num2:.0f} = {resultado:.0f}")
-    
-# nenhuma da opções 
-else:
-    print("\033[1;31mOperador inválido! Tente novamente\033[m")
-    
+    opcao = input("Deseja continuar? [s/n]: ").lower()[0:1]
+    if opcao != "s":
+        break
+    limpar_tela()
